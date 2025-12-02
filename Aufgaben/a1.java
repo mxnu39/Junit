@@ -23,4 +23,32 @@ public class a1 {
             System.out.print(s + " ");
         }
     }
+
+    public void setname(String name) {
+        this.name = name;
+    }
+
+    public void setage(int age){
+        this.age = age;
+    }
+
+    public void setheight(double height){
+        this.height = height;
+    }
+
+    public void setweight(float weight){
+        this.weight = weight;
+    }
+
+    public void setisstudent(boolean isStudent){
+        this.isStudent = isStudent;
+    }
+
+    public void setGrade (char grade){
+        this.grade = grade;
+    }
+
+    public void setidNumber(long idNumber){
+        this.idNumber = idNumber;
+    }
 }

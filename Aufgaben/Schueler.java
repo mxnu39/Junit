@@ -90,7 +90,7 @@ public class Schueler{
             System.out.printf(Debug + ANSI_YELLOW + "[%s/%d]" + ANSI_RESET + " befindet sich in der Arbeitsgruppe(AG): [AG %d]%n", this.name, this.idNumber, this.zuteilung, getArrayByID(this.name));
         } 
         else if (!isStudent){
-            System.out.printf("[%s/%d] ist eine Lehrperson (Keine AG)", this.name, this.idNumber);
+            System.out.printf(Debug + "[%s/%d] ist eine Lehrperson (Keine AG)", this.name, this.idNumber);
         }
         else{
             System.out.printf(Debug + ANSI_RED + "Schueler [%s/%d] wurde noch nicht zugeteilt.%n" + ANSI_RESET, this.name, this.idNumber);

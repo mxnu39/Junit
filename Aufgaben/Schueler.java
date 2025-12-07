@@ -35,17 +35,6 @@ public class Schueler{
     public static final String ANSI_WHITE = "\u001B[37m";
 
     public static void main(String[] args) {
-        /*
-         * ArrayList<String> list = new ArrayList<>();
-         * 
-         * list.add("");
-         * list.add("");
-         * list.add("");
-         * 
-         * for (String s : list) {
-         * System.out.print(s + " ");
-         * }
-         */
 
         // Erstellung erster Schueler-Objekt
         Schueler s1 = new Schueler("Manuel", getRandomNumID(), true);

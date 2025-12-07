@@ -20,6 +20,7 @@ public class Schueler{
     static ArrayList<Integer> numList = new ArrayList<>();
     public static String Debug = "[Debug]>>";
     static ArrayList<Schueler> Schuelerliste = new ArrayList<>();
+    static ArrayList<Schueler> LehrerListe = new ArrayList<>();
     String[][] Arbeitsgruppen = new String[5][5];
 
 
@@ -50,27 +51,31 @@ public class Schueler{
         Schueler s1 = new Schueler("Manuel", getRandomNumID(), true);
         String m1 = s1.isStudent() ? (ANSI_GREEN + "Schueler wurde erstellt") : (ANSI_RED + "Lehrer wurde erstellt");
         System.out.printf(Debug + m1 + ANSI_CYAN + "[%s, %d] %n" + ANSI_RESET, s1.getName(), s1.getNum());
-        Schuelerliste.add(s1);
         
         // Erstellung zweiter Schueler-Objekt
         Schueler s2 = new Schueler("Finn", getRandomNumID(), true);
         String m2 = s2.isStudent() ? (ANSI_GREEN + "Schueler wurde erstellt") : (ANSI_RED + "Lehrer wurde erstellt");
         System.out.printf(Debug + m2 + ANSI_CYAN + "[%s, %d] %n" + ANSI_RESET, s2.getName(), s2.getNum());
-        Schuelerliste.add(s2);
+
         // Erstellung dritter Schueler-Objekt
         Schueler s3 = new Schueler("Cleopatra", getRandomNumID(), false);
         String m3 = s3.isStudent() ? (ANSI_GREEN + "Schueler wurde erstellt") : (ANSI_RED + "Lehrer wurde erstellt");
         System.out.printf(Debug + m3 + ANSI_CYAN + "[%s, %d] %n" + ANSI_RESET, s3.getName(), s3.getNum());
-        Schuelerliste.add(s3);
+        
+
         // Zuweisung der Arbeitsgruppe
         for (Schueler s: Schuelerliste){
             s.sortieren();
             s.getSorted();
+        } // Lehrpersonen
+        for (Schueler l : LehrerListe){
+            l.sortieren();
+            l.getSorted();
         }
     }
 
     public void sortieren(){
-        if (this.zuteilung == 0){
+        if (this.zuteilung == 0 && isStudent){
             for(int a = 0; a < Arbeitsgruppen.length; a++){
                 for (int y = 0; y < Arbeitsgruppen[a].length; y++){
                     if (Arbeitsgruppen[a][y] == null){
@@ -80,8 +85,11 @@ public class Schueler{
                         return;
                     }
                 }   
-            }   // Wenn bereits zugeteilt:
-        }else {
+            }   
+        } else if(!isStudent){ // Fuer Lehrpersonen
+            return;
+        }
+        else { // Wenn bereits zugeteilt:
             System.out.printf(Debug + "[%s/%d] Schueler wurde bereits einer AG zugeteilt.", this.name, this.idNumber);
         }
     }
@@ -91,7 +99,11 @@ public class Schueler{
     public void getSorted(){
         if (this.zuteilung != 0){
             System.out.printf(Debug + ANSI_YELLOW + "[%s/%d]" + ANSI_RESET + " befindet sich in der Arbeitsgruppe(AG): [AG %d]%n", this.name, this.idNumber, this.zuteilung, getArrayByID(this.name));
-        } else{
+        } 
+        else if (!isStudent){
+            System.out.printf("[%s/%d] ist eine Lehrperson (Keine AG)", this.name, this.idNumber);
+        }
+        else{
             System.out.printf(Debug + ANSI_RED + "Schueler [%s/%d] wurde noch nicht zugeteilt.%n" + ANSI_RESET, this.name, this.idNumber);
         }
     }
@@ -139,8 +151,10 @@ public class Schueler{
         this.idNumber = idNumber;
         if (isStudent) {
             this.isStudent = true;
+            Schuelerliste.add(this);
         } else {
             this.isStudent = false;
+            LehrerListe.add(this);
         }
     }
 

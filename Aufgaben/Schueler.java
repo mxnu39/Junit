@@ -3,10 +3,12 @@ package Aufgaben;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 
-public class Schueler{
+public class Schueler implements Comparable<Schueler> {
 
     // Variable declarations
     private String name;
@@ -21,7 +23,7 @@ public class Schueler{
     public static String Debug = "[Debug]>>";
     static ArrayList<Schueler> Schuelerliste = new ArrayList<>();
     static ArrayList<Schueler> LehrerListe = new ArrayList<>();
-    String[][] Arbeitsgruppen = new String[5][5];
+    static String[][] Arbeitsgruppen = new String[5][5];
 
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -60,6 +62,19 @@ public class Schueler{
         for (Schueler l : LehrerListe){
             l.sortieren();
             l.getSorted();
+        }
+        // createRandomStudents();
+        comparabletest();
+    }
+
+    public static void createRandomStudents(){
+
+        for(int x = 0; x < 22; x++){
+            String x_name = "r_s_" + x;
+            long x_num = getRandomNumID();
+            boolean x_bol = true;
+            Schueler x_s = new Schueler(x_name, x_num, x_bol);
+            x_s.sortieren();
         }
     }
 
@@ -178,4 +193,28 @@ public class Schueler{
     public void setidNumber(long idNumber) {
         this.idNumber = idNumber;
     }
+
+
+    @Override
+    public int compareTo(Schueler other){
+        return this.name.compareToIgnoreCase(other.name); // Sortierung alphabetisch
+    } 
+
+    public static void comparabletest(){
+        System.out.printf("%n%n------ Sortierte Schueler ------%n");
+
+        Collections.sort(Schuelerliste,
+           Comparator.comparingInt((Schueler s) -> s.zuteilung)
+                    .thenComparingLong(s -> s.idNumber)
+                    .thenComparing(s -> s.getName())
+        ); // Sortieren der Liste
+
+        for (Schueler s : Schuelerliste){
+            System.out.println(s.zuteilung + ") {ID:" + s.idNumber + "} NAME:" + s.getName());
+        }
+    }
+
+
+
+
 }

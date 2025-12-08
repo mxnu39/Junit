@@ -20,3 +20,20 @@ Sortiere zusätzlich die Schüler nach:
 
 <strong>Ausgabe:</strong>
 Gib nach der Sortierung die Schülerliste in der Konsole aus, z. B.:
+
+
+# Aufgabe A – Interface
+
+Erstelle ein <strong>Interface</strong> "Elektronisch" mit folgenden Methoden:
+
+einschalten()
+
+ausschalten()
+
+Dann:
+
+Erstelle eine Klasse "<strong>Computer</strong>", die das Interface implementiert
+
+Die Methoden sollen <strong>sinnvolle Ausgaben</strong> machen
+
+Teste alles in einer <strong>Main-Klasse</strong>

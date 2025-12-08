@@ -1,6 +1,7 @@
-public class main {
+public class Main {
     public static void main(String[] args) {
-
-    System.out.println("Hello, World!");
-}
+        Auto a = new Auto("BMW",2000,50000);
+        a.fahren(100);
+        a.anzeigen();
+    }
 }

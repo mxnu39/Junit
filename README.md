@@ -1,4 +1,4 @@
-# Aufgabe / 07.12.2025
+# Aufgabe / 07.12.2025 ✅ 
 <h2>Aufgabenstellung: Schüler sortieren</h2>
 
 <strong>Ziel:</strong>
